@@ -7,6 +7,8 @@ import Msite from '../pages/Msite/Msite.vue'
 import Classify from '../pages/Classify/Classify.vue'
 import Cart from '../pages/Cart/Cart.vue'
 import Home from '../pages/Home/Home.vue'
+import left_list from '../pages/Classify/left_list/letf_list.vue'
+import right_list from '../pages/Classify/right_list/right_list.vue'
 
 Vue.use(VueRouter)
 
@@ -20,7 +22,18 @@ export default new VueRouter({ //配置对象
     },
     {
       path:'/classify',
-      component:Classify
+      component:Classify,
+      children:[
+        {path:'/classify/left_list',
+          component:left_list},
+        {path:'/classify/right_list',
+          component:right_list},
+        {
+          path:'/', //重定向
+          redirect:'/classify/left_list',
+        },
+      ]
+
     },
     {
       path:'/cart',
